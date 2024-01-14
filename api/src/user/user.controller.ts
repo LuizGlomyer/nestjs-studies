@@ -15,8 +15,7 @@ import { ParamId } from 'src/decorators/param-id.decorator';
 
 @Controller('users')
 export class UserController {
-
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   @Post()
   async create(@Body() data: CreateUserDTO) {
@@ -30,23 +29,17 @@ export class UserController {
 
   @Get(':id')
   async show(@ParamId() id: number) {
-    console.log(id)
+    console.log(id);
     return this.userService.show(id);
   }
 
   @Put(':id')
-  async update(
-    @Body() data: UpdatePutUserDTO,
-    @ParamId() id: number,
-  ) {
+  async update(@Body() data: UpdatePutUserDTO, @ParamId() id: number) {
     return this.userService.update(id, data);
   }
 
   @Patch(':id')
-  async updatePartial(
-    @Body() data: UpdatePatchUserDTO,
-    @ParamId() id: number,
-  ) {
+  async updatePartial(@Body() data: UpdatePatchUserDTO, @ParamId() id: number) {
     return this.userService.updatePartial(id, data);
   }
 

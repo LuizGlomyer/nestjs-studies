@@ -1,13 +1,12 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { CreateUserDTO } from "./dto/create-user.dto";
-import { PrismaService } from "src/prisma/prisma.service";
-import { UpdatePutUserDTO } from "./dto/update-put-user.dto";
-import { UpdatePatchUserDTO } from "./dto/update-patch-user.dto";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateUserDTO } from './dto/create-user.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdatePutUserDTO } from './dto/update-put-user.dto';
+import { UpdatePatchUserDTO } from './dto/update-patch-user.dto';
 
 @Injectable()
 export class UserService {
-
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(data: CreateUserDTO) {
     return this.prisma.user.create({
@@ -25,11 +24,14 @@ export class UserService {
     return this.prisma.user.findUnique({
       where: {
         id,
-      }
+      },
     });
   }
 
-  async update(id: number, { email, name, password, birthDate }: UpdatePutUserDTO) {
+  async update(
+    id: number,
+    { email, name, password, birthDate }: UpdatePutUserDTO,
+  ) {
     await this.exists(id);
 
     return this.prisma.user.update({
@@ -38,11 +40,11 @@ export class UserService {
         name,
         password,
         birthDate: birthDate ? new Date(birthDate) : null,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 
@@ -60,8 +62,8 @@ export class UserService {
         updatedAt: new Date(),
       },
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 
@@ -70,17 +72,19 @@ export class UserService {
 
     return this.prisma.user.delete({
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 
   async exists(id: number) {
-    if (!await this.prisma.user.count({
-      where: {
-        id
-      }
-    })) {
+    if (
+      !(await this.prisma.user.count({
+        where: {
+          id,
+        },
+      }))
+    ) {
       throw new NotFoundException(`There is no user with the '${id}' id`);
     }
   }
