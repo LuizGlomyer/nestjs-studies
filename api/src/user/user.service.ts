@@ -30,7 +30,7 @@ export class UserService {
 
   async update(
     id: number,
-    { email, name, password, birthDate }: UpdatePutUserDTO,
+    { email, name, password, birthDate, role }: UpdatePutUserDTO,
   ) {
     await this.exists(id);
 
@@ -41,6 +41,7 @@ export class UserService {
         password,
         birthDate: birthDate ? new Date(birthDate) : null,
         updatedAt: new Date(),
+        role: role ?? 1,
       },
       where: {
         id,
@@ -50,6 +51,8 @@ export class UserService {
 
   async updatePartial(id: number, data: UpdatePatchUserDTO) {
     await this.exists(id);
+
+    console.log(data);
 
     if (data.birthDate) {
       const date = new Date(data.birthDate).toISOString();

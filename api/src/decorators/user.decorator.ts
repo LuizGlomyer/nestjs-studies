@@ -4,6 +4,8 @@ import {
   createParamDecorator,
 } from '@nestjs/common';
 
+export const ROLES_KEY = 'roles';
+
 export const User = createParamDecorator(
   (filter: string, context: ExecutionContext) => {
     const request = context.switchToHttp().getRequest();
