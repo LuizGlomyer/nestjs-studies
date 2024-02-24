@@ -1,33 +1,4 @@
-In general, the request lifecycle looks like the following:
 
-Incoming request
-Middleware
-2.1. Globally bound middleware
-2.2. Module bound middleware
-Guards
-3.1 Global guards
-3.2 Controller guards
-3.3 Route guards
-Interceptors (pre-controller)
-4.1 Global interceptors
-4.2 Controller interceptors
-4.3 Route interceptors
-Pipes
-5.1 Global pipes
-5.2 Controller pipes
-5.3 Route pipes
-5.4 Route parameter pipes
-Controller (method handler)
-Service (if exists)
-Interceptors (post-request)
-8.1 Route interceptor
-8.2 Controller interceptor
-8.3 Global interceptor
-Exception filters
-9.1 route
-9.2 controller
-9.3 global
-Server response
 
 
 <p align="center">
@@ -62,6 +33,10 @@ Server response
 
 ```bash
 $ pnpm install
+
+# database configuration
+$ npx prisma generate
+$ npx prisma db push 
 ```
 
 ## Running the app
