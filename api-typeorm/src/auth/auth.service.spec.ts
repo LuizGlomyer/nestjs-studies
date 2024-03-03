@@ -27,7 +27,7 @@ describe('AuthService', () => {
     authService = module.get<AuthService>(AuthService);
   });
 
-  test('Validar a definição', () => {
+  test('Validate definition', () => {
     expect(authService).toBeDefined();
   });
 

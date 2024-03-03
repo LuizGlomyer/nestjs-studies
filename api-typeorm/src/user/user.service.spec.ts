@@ -22,7 +22,7 @@ describe('UserService', () => {
     userRepository = module.get(getRepositoryToken(UserEntity));
   });
 
-  test('Validar a definição', () => {
+  test('Validate definition', () => {
     expect(userServive).toBeDefined();
     expect(userRepository).toBeDefined();
   });
