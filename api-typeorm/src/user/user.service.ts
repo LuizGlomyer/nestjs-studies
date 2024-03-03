@@ -20,7 +20,7 @@ export class UserService {
 
   async create(data: CreateUserDTO) {
     if (
-      await this.usersRepository.exists({
+      await this.usersRepository.exist({
         where: {
           email: data.email,
         },
@@ -93,13 +93,14 @@ export class UserService {
 
   async delete(id: number) {
     await this.exists(id);
+    await this.usersRepository.delete(id);
 
-    return this.usersRepository.delete(id);
+    return true;
   }
 
   async exists(id: number) {
     if (
-      !(await this.usersRepository.exists({
+      !(await this.usersRepository.exist({
         where: {
           id,
         },
