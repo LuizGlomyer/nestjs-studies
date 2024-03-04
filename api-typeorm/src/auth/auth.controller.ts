@@ -22,17 +22,15 @@ import {
   FileInterceptor,
   FilesInterceptor,
 } from '@nestjs/platform-express';
-import { join } from 'path';
 import { AuthGuard } from '../guards/auth.guard';
 import { User } from '../decorators/user.decorator';
-import { UserService } from '../user/user.service';
 import { FileService } from '../file/file.service';
+import { UserEntity } from '../user/entity/user.entity';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly userService: UserService,
     private readonly fileService: FileService,
   ) {}
 
@@ -58,7 +56,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Post('me')
-  async me(@User() user, @Req() { tokenPayload }) {
+  async me(@User() user: UserEntity, @Req() { tokenPayload }) {
     return { user, tokenPayload };
   }
 
@@ -66,7 +64,7 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Post('photo')
   async uploadPhoto(
-    @User() user,
+    @User() user: UserEntity,
     @UploadedFile(
       new ParseFilePipe({
         validators: [
@@ -88,7 +86,7 @@ export class AuthController {
       throw new BadRequestException();
     }
 
-    return { success: true };
+    return photo;
   }
 
   @UseInterceptors(FilesInterceptor('files'))

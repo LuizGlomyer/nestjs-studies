@@ -114,7 +114,7 @@ export class AuthService {
       },
     });
 
-    return { status: true };
+    return { success: true };
   }
 
   async reset(password: string, token: string) {
@@ -138,7 +138,6 @@ export class AuthService {
 
       return this.createToken(user);
     } catch (e) {
-      console.log(e);
       throw new BadRequestException(e.error);
     }
   }

@@ -37,7 +37,6 @@ export class UserController {
 
   @Get(':id')
   async show(@ParamId() id: number) {
-    console.log(id);
     return this.userService.show(id);
   }
 
@@ -53,6 +52,8 @@ export class UserController {
 
   @Delete(':id')
   async delete(@ParamId() id: number) {
-    return this.userService.delete(id);
+    return {
+      success: await this.userService.delete(id),
+    };
   }
 }
