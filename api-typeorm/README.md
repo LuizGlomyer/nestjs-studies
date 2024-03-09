@@ -35,8 +35,7 @@
 $ pnpm install
 
 # database configuration
-$ npx prisma generate
-$ npx prisma db push 
+$ pnpm run migrate:create
 ```
 
 ## Running the app
