@@ -7,7 +7,7 @@ services:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_DATABASE: db
-      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_ROOT_PASSWORD: 'mysql'
     ports:
       - "3306:3306"
     volumes:

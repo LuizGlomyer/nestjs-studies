@@ -1,6 +1,7 @@
 mysql-data/
 storage/
 .env
+.env.test
 
 # compiled output
 /dist
